@@ -77,11 +77,5 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/modules/WorldGuard.jar</systemPath>
         </dependency>
-        <dependency>
-            <groupId>com.sun.xml.fastinfoset</groupId>
-            <artifactId>FastInfoset</artifactId>
-            <version>1.2.18</version>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 </project>
