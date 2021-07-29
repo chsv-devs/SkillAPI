@@ -39,6 +39,7 @@ import com.sucy.skill.log.LogType;
 import com.sucy.skill.log.Logger;
 import com.sucy.skill.manager.AttributeManager;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -48,6 +49,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import java.util.HashMap;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Listener for managing applying attribute bonuses for players
@@ -160,7 +162,7 @@ public class AttributeListener extends SkillAPIListener {
      *
      * @param event event details
      */
-    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPhysicalDamage(PhysicalDamageEvent event) {
         // Physical Damage
         if (event.getDamager() instanceof Player) {
@@ -168,8 +170,14 @@ public class AttributeListener extends SkillAPIListener {
             if (player.hasMetadata("NPC")) { return; }
 
             PlayerData data = SkillAPI.getPlayerData(player);
-
             double newAmount = data.scaleStat(AttributeManager.PHYSICAL_DAMAGE, event.getDamage());
+
+            if (ThreadLocalRandom.current().nextDouble() <= data.scaleStat(AttributeManager.CRIT, 0)) {
+                player.sendTitle("", "§c크리티컬", 2, 15, 2);
+                player.getWorld().playSound(player.getLocation(), Sound.ENTITY_PLAYER_ATTACK_CRIT, 1, 1);
+                newAmount += data.scaleStat(AttributeManager.CRIT_DAMAGE, newAmount);
+            }
+
             event.setDamage(newAmount);
         }
 

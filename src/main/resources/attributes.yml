@@ -12,6 +12,9 @@
 #   skill-damage     - damage dealt with skills
 #   skill-defense    - damage taken from skills
 #   move-speed       - movement speed of the player
+#   crit             - 크리티컬 확률, 0.001*a = 1레벨당 0.1% 추가
+#   crit-damage      - 크리티컬 데미지
+
 vitality:
   display: 'Vitality'
   max: 999

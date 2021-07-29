@@ -60,6 +60,8 @@ public class AttributeManager {
     public static final String SKILL_DEFENSE    = "skill-defense";
     public static final String MOVE_SPEED       = "move-speed";
     public static final String COOLDOWN         = "cooldown";
+    public static final String CRIT             = "crit";
+    public static final String CRIT_DAMAGE      = "crit-damage";
 
     private final HashMap<String, Attribute>       attributes  = new LinkedHashMap<>();
     private final HashMap<String, Attribute>       lookup      = new HashMap<>();
