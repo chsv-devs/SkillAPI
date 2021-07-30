@@ -249,7 +249,7 @@ public class AttributeListener extends SkillAPIListener {
             data.addMaxMana(change);
 
             change = updateStat(data, AttributeManager.MOVE_SPEED, player.getWalkSpeed(), -2, 1);
-            player.setWalkSpeed(player.getWalkSpeed() + (float) change);
+            player.setWalkSpeed(Math.min(player.getWalkSpeed() + (float) change, 1));
         }
     }
 
