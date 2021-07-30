@@ -175,7 +175,7 @@ public class AttributeListener extends SkillAPIListener {
             if (ThreadLocalRandom.current().nextDouble() <= data.scaleStat(AttributeManager.CRIT, 0)) {
                 player.sendTitle("", "§c크리티컬", 2, 15, 2);
                 player.getWorld().playSound(player.getLocation(), Sound.ENTITY_PLAYER_ATTACK_CRIT, 1, 1);
-                newAmount += data.scaleStat(AttributeManager.CRIT_DAMAGE, newAmount);
+                newAmount = data.scaleStat(AttributeManager.CRIT_DAMAGE, newAmount);
             }
 
             event.setDamage(newAmount);
